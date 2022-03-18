@@ -11,15 +11,15 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="A deep exploration, an visualization, of how a single-layer linear neural network (NN) is able to approximate non linear behaviours with a just handful of neurons and the magic of activation functions." />
 <meta property="og:description" content="A deep exploration, an visualization, of how a single-layer linear neural network (NN) is able to approximate non linear behaviours with a just handful of neurons and the magic of activation functions." />
-<link rel="canonical" href="https://lposti.github.io/MLPages/neural%20network/nn/basics/bayesian/mcmc/jupyter/2022/03/17/neurons_non-linearities.html" />
-<meta property="og:url" content="https://lposti.github.io/MLPages/neural%20network/nn/basics/bayesian/mcmc/jupyter/2022/03/17/neurons_non-linearities.html" />
+<link rel="canonical" href="https://lposti.github.io/MLPages/neural%20network/basics/bayesian/mcmc/jupyter/2022/03/17/neurons_non-linearities.html" />
+<meta property="og:url" content="https://lposti.github.io/MLPages/neural%20network/basics/bayesian/mcmc/jupyter/2022/03/17/neurons_non-linearities.html" />
 <meta property="og:site_name" content="An Astronomer’s view on Deep Learning" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2022-03-17T00:00:00-05:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Understanding how basic linear NNs handle non-linearities" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Lorenzo Posti"},"dateModified":"2022-03-17T00:00:00-05:00","datePublished":"2022-03-17T00:00:00-05:00","description":"A deep exploration, an visualization, of how a single-layer linear neural network (NN) is able to approximate non linear behaviours with a just handful of neurons and the magic of activation functions.","headline":"Understanding how basic linear NNs handle non-linearities","mainEntityOfPage":{"@type":"WebPage","@id":"https://lposti.github.io/MLPages/neural%20network/nn/basics/bayesian/mcmc/jupyter/2022/03/17/neurons_non-linearities.html"},"url":"https://lposti.github.io/MLPages/neural%20network/nn/basics/bayesian/mcmc/jupyter/2022/03/17/neurons_non-linearities.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Lorenzo Posti"},"dateModified":"2022-03-17T00:00:00-05:00","datePublished":"2022-03-17T00:00:00-05:00","description":"A deep exploration, an visualization, of how a single-layer linear neural network (NN) is able to approximate non linear behaviours with a just handful of neurons and the magic of activation functions.","headline":"Understanding how basic linear NNs handle non-linearities","mainEntityOfPage":{"@type":"WebPage","@id":"https://lposti.github.io/MLPages/neural%20network/basics/bayesian/mcmc/jupyter/2022/03/17/neurons_non-linearities.html"},"url":"https://lposti.github.io/MLPages/neural%20network/basics/bayesian/mcmc/jupyter/2022/03/17/neurons_non-linearities.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/MLPages/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://lposti.github.io/MLPages/feed.xml" title="An Astronomer's view on Deep Learning" /><link rel="shortcut icon" type="image/x-icon" href="/MLPages/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -106,9 +106,6 @@ window.onload = wrap_img;
       <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
       
         <a class="category-tags-link" href="/MLPages/categories/#neural network">neural network</a>
-        &nbsp;
-      
-        <a class="category-tags-link" href="/MLPages/categories/#NN">NN</a>
         &nbsp;
       
         <a class="category-tags-link" href="/MLPages/categories/#basics">basics</a>
@@ -214,14 +211,16 @@ Cybenko (1989) showed that the set of functions above spans the whole space of c
 <h3 id="Where-does-the-non-linear-behaviour-come-from">
 <a class="anchor" href="#Where-does-the-non-linear-behaviour-come-from" aria-hidden="true"><span class="octicon octicon-link"></span></a>Where does the non-linear behaviour come from<a class="anchor-link" href="#Where-does-the-non-linear-behaviour-come-from"> </a>
 </h3>
-<p>Since a neuron is a composition of a linear function with an activation function, the key to approximate non-linear functions is in the <em>sigmoidal</em> activation function. Formally a sigmoidal is a function $\sigma: \mathrm{R}\to\mathrm{R}$ such that
+<p>Since a neuron is a composition of a linear function with an activation function, the key to approximate non-linear functions is in the <em>sigmoidal</em> activation function. Formally a sigmoidal is a function $\sigma: \mathrm{R}\to\mathrm{R}$ such that $\lim_{x\to+\infty} \sigma(x)=1$ and $\lim_{x\to-\infty} \sigma(x)=0$.
+<!-- 
 $$
 \sigma(x) = 
   \begin{cases}
   1\qquad\mbox{as}\;\;x\to+\infty,\\
   0\qquad\mbox{as}\;\;x\to-\infty.
   \end{cases}
-$$
+$$ 
+-->
 The Heaviside function is an example of one of the simplest sigmoidal functions; however that is not continuous near $x=0$, thus in practice smooth approximations of it are often used. A popular one is:
 $$
 \sigma(x)=\frac{1}{1+e^{-x}}
@@ -1418,7 +1417,7 @@ MCMC model
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/MLPages/neural%20network/nn/basics/bayesian/mcmc/jupyter/2022/03/17/neurons_non-linearities.html" hidden></a>
+</script><a class="u-url" href="/MLPages/neural%20network/basics/bayesian/mcmc/jupyter/2022/03/17/neurons_non-linearities.html" hidden></a>
 
   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 </article>
