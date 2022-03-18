@@ -98,7 +98,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      14 min read
+      13 min read
     
 </span></p>
 
@@ -167,7 +167,6 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h4"><a href="#Dependence-on-the-shape-of-the-activation-function">Dependence on the shape of the activation function </a></li>
 <li class="toc-entry toc-h3"><a href="#NN-fitting-of-$x^2$-function">NN fitting of $x^2$ function </a>
 <ul>
-<li class="toc-entry toc-h5"><a href="#just-an-ugly-rework..">just an ugly rework.. </a></li>
 <li class="toc-entry toc-h4"><a href="#Let's-print-out-explicitly-the-function-found-with-$N=2$-neurons">Let&#39;s print out explicitly the function found with $N=2$ neurons </a></li>
 <li class="toc-entry toc-h4"><a href="#Fit-with-different-activation-functions">Fit with different activation functions </a></li>
 </ul>
@@ -199,9 +198,9 @@ window.onload = wrap_img;
 <p>While studying deep learning, coming from a mathematical physics background, I struggled a lot in understanding how a neural network (NN) can fit non-linear functions. Most of the <em>visual explanations</em> or tutorials I could find on NNs did not give me a satisfactory explanation as to how a composition of linear functions - i.e. an NN - can handle non-linear behaviour. So I looked for more formal derivations, as I knew that the mathematical foundations of deep learning had to be sound.</p>
 <p>Eventually I came across one of the most important papers in this field: <strong>Cybenko (1989, <a href="https://link.springer.com/article/10.1007/BF02551274">doi:10.1007/BF02551274</a>)</strong>. Reading this paper opened my eyes and gave me a completely different perspective on the problem. I realized that the key to the <em>universal approximation theorem</em> is that the composition of a linear function and a <em>sigmoidal</em> (so-called activation) function yields a series of functions which is dense in the space of continuous functions.</p>
 <p>In other words, any continuous function can be written as a finite sum of terms given by the composition of a linear and a sigmoidal function, i.e.
-\begin{equation}
+$$
 \sum_{i=0}^N \alpha_i\,\sigma({\bf w}_i\cdot{\bf x} + b_i),
-\end{equation}
+$$
 with $\sigma: \mathrm{R}\to\mathrm{R}$ being a <em>sigmoidal</em> activation function, ${\bf x}\in\mathrm{R}^n$ and ${\bf w}_i\in\mathrm{R}^n$, $\alpha_i,\,b_i\in\mathrm{R}$ $\forall i$.
 Cybenko (1989) showed that the set of functions above spans the whole space of continuous functions in $\mathrm{R}^n$, effectively making this set <em>kind of a</em> <strong>basis</strong> for $\mathrm{R}^n$, except that the functions are not linearly independent.</p>
 <p>Elements of this set of function as in the equation above are usually called <em>units</em> or <mark>neurons</mark>.</p>
@@ -216,17 +215,17 @@ Cybenko (1989) showed that the set of functions above spans the whole space of c
 <a class="anchor" href="#Where-does-the-non-linear-behaviour-come-from" aria-hidden="true"><span class="octicon octicon-link"></span></a>Where does the non-linear behaviour come from<a class="anchor-link" href="#Where-does-the-non-linear-behaviour-come-from"> </a>
 </h3>
 <p>Since a neuron is a composition of a linear function with an activation function, the key to approximate non-linear functions is in the <em>sigmoidal</em> activation function. Formally a sigmoidal is a function $\sigma: \mathrm{R}\to\mathrm{R}$ such that
-\begin{equation}
+$$
 \sigma(x) = 
   \begin{cases}
   1\qquad\mbox{as}\;\;x\to+\infty,\\
   0\qquad\mbox{as}\;\;x\to-\infty.
   \end{cases}
-\end{equation}
+$$
 The Heaviside function is an example of one of the simplest sigmoidal functions; however that is not continuous near $x=0$, thus in practice smooth approximations of it are often used. A popular one is:
-\begin{equation}
+$$
 \sigma(x)=\frac{1}{1+e^{-x}}
-\end{equation}</p>
+$$</p>
 <p><strong>But how can a linear combination of lines composed with a step function approximate any non-linear behaviour?</strong>
 I knew from Cybenko's results that this had to be the case, so I set out and tried to understand and see this better.</p>
 
@@ -260,7 +259,6 @@ I knew from Cybenko's results that this had to be the case, so I set out and tri
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 
 <span class="n">device</span> <span class="o">=</span> <span class="s1">'cuda'</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">'cpu'</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"We are using the following device for learning:"</span><span class="p">,</span><span class="n">device</span><span class="p">)</span>
 <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
 
 <span class="o">%</span><span class="k">matplotlib</span> inline
@@ -272,20 +270,6 @@ I knew from Cybenko's results that this had to be the case, so I set out and tri
 </div>
 
     </details>
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>We are using the following device for learning: cpu
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
     
 
@@ -447,7 +431,7 @@ I knew from Cybenko's results that this had to be the case, so I set out and tri
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<details class="description" open="">
+<details class="description">
       <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
         <p></p>
 <div class="input">
@@ -727,30 +711,6 @@ The rows of panels below show the residuals $\Delta y=|y-y_{\rm NN}|$, i.e. abs(
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h5 id="just-an-ugly-rework..">
-<a class="anchor" href="#just-an-ugly-rework.." aria-hidden="true"><span class="octicon octicon-link"></span></a>just an ugly rework..<a class="anchor-link" href="#just-an-ugly-rework.."> </a>
-</h5>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let me now use this piece of code to do a very awkward and ugly refactoring of the parameters above...</p>
-
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Let's-print-out-explicitly-the-function-found-with-$N=2$-neurons">
 <a class="anchor" href="#Let's-print-out-explicitly-the-function-found-with-%24N=2%24-neurons" aria-hidden="true"><span class="octicon octicon-link"></span></a>Let's print out explicitly the function found with $N=2$ neurons<a class="anchor-link" href="#Let's-print-out-explicitly-the-function-found-with-%24N=2%24-neurons"> </a>
 </h4>
@@ -760,7 +720,25 @@ The rows of panels below show the residuals $\Delta y=|y-y_{\rm NN}|$, i.e. abs(
     
     
 <div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
 
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">string_func_mod</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="s2">"</span><span class="si">%1.0f</span><span class="s2"> sig(</span><span class="si">%1.1f</span><span class="s2">*x </span><span class="si">%1.1f</span><span class="s2">) + </span><span class="si">%1.0f</span><span class="s2"> sig(</span><span class="si">%1.1f</span><span class="s2">*x </span><span class="si">%1.1f</span><span class="s2">) + </span><span class="si">%1.1f</span><span class="s2">"</span> <span class="o">%</span>
+           <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">]))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">string_func_mod</span><span class="p">(</span><span class="n">mod2_sigmoid</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
 <div class="output_wrapper">
 <div class="output">
 
