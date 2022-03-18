@@ -6,7 +6,7 @@
 
 https://lposti.github.io/MLPages/
 
-# My Blog
+# An Astronomer's view on Deep Learning
 
 
 _powered by [fastpages](https://github.com/fastai/fastpages)_
