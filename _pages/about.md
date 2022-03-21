@@ -4,7 +4,7 @@ title: About Me
 permalink: /about/
 ---
 
-<p><img src="/images/LP_round.png" style="height:120px;width:120px;float:left;"/>
+<p><img src="../images/LP_round.png" style="height:120px;width:120px;float:left;"/>
 I am Lorenzo Posti, a postdoctoral researcher in Astrophysics at the Observatory of Strasbourg (France).
 </p>
 
