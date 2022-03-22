@@ -11,15 +11,15 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="A deep exploration, an visualization, of how a single-layer linear neural network (NN) is able to approximate non linear behaviours with a just handful of neurons and the magic of activation functions." />
 <meta property="og:description" content="A deep exploration, an visualization, of how a single-layer linear neural network (NN) is able to approximate non linear behaviours with a just handful of neurons and the magic of activation functions." />
-<link rel="canonical" href="https://lposti.github.io/MLPages/neural%20network/basics/bayesian/mcmc/jupyter/2022/03/20/neurons_non-linearities.html" />
-<meta property="og:url" content="https://lposti.github.io/MLPages/neural%20network/basics/bayesian/mcmc/jupyter/2022/03/20/neurons_non-linearities.html" />
+<link rel="canonical" href="https://lposti.github.io/MLPages/neural%20network/basics/bayesian/mcmc/jupyter/2022/03/21/neurons_non-linearities.html" />
+<meta property="og:url" content="https://lposti.github.io/MLPages/neural%20network/basics/bayesian/mcmc/jupyter/2022/03/21/neurons_non-linearities.html" />
 <meta property="og:site_name" content="An Astronomer’s perspective on Deep Learning" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-03-20T00:00:00-05:00" />
+<meta property="article:published_time" content="2022-03-21T00:00:00-05:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Understanding how basic linear NNs handle non-linearities" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Lorenzo Posti"},"dateModified":"2022-03-20T00:00:00-05:00","datePublished":"2022-03-20T00:00:00-05:00","description":"A deep exploration, an visualization, of how a single-layer linear neural network (NN) is able to approximate non linear behaviours with a just handful of neurons and the magic of activation functions.","headline":"Understanding how basic linear NNs handle non-linearities","mainEntityOfPage":{"@type":"WebPage","@id":"https://lposti.github.io/MLPages/neural%20network/basics/bayesian/mcmc/jupyter/2022/03/20/neurons_non-linearities.html"},"url":"https://lposti.github.io/MLPages/neural%20network/basics/bayesian/mcmc/jupyter/2022/03/20/neurons_non-linearities.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Lorenzo Posti"},"dateModified":"2022-03-21T00:00:00-05:00","datePublished":"2022-03-21T00:00:00-05:00","description":"A deep exploration, an visualization, of how a single-layer linear neural network (NN) is able to approximate non linear behaviours with a just handful of neurons and the magic of activation functions.","headline":"Understanding how basic linear NNs handle non-linearities","mainEntityOfPage":{"@type":"WebPage","@id":"https://lposti.github.io/MLPages/neural%20network/basics/bayesian/mcmc/jupyter/2022/03/21/neurons_non-linearities.html"},"url":"https://lposti.github.io/MLPages/neural%20network/basics/bayesian/mcmc/jupyter/2022/03/21/neurons_non-linearities.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/MLPages/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://lposti.github.io/MLPages/feed.xml" title="An Astronomer's perspective on Deep Learning" /><link rel="shortcut icon" type="image/x-icon" href="/MLPages/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -90,8 +90,8 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Understanding how basic linear NNs handle non-linearities</h1><p class="page-description">A deep exploration, an visualization, of how a single-layer linear neural network (NN) is able to approximate non linear behaviours with a just handful of neurons and the magic of activation functions.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-03-20T00:00:00-05:00" itemprop="datePublished">
-        Mar 20, 2022
+    <h1 class="post-title p-name" itemprop="name headline">Understanding how basic linear NNs handle non-linearities</h1><p class="page-description">A deep exploration, an visualization, of how a single-layer linear neural network (NN) is able to approximate non linear behaviours with a just handful of neurons and the magic of activation functions.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-03-21T00:00:00-05:00" itemprop="datePublished">
+        Mar 21, 2022
       </time>• 
           <span itemprop="author" itemscope itemtype="http://schema.org/Person">
             <span class="p-author h-card" itemprop="name">Lorenzo Posti</span></span>
@@ -200,7 +200,7 @@ $$
 $$
 with $\sigma: \mathrm{R}\to\mathrm{R}$ being a <em>sigmoidal</em> activation function, ${\bf x}\in\mathrm{R}^n$ and ${\bf w}_i\in\mathrm{R}^n$, $\alpha_i,\,b_i\in\mathrm{R}$ $\forall i$.
 Cybenko (1989) showed that the set of functions above spans the whole space of continuous functions in $\mathrm{R}^n$, effectively making this set <em>kind of a</em> <strong>basis</strong> for $\mathrm{R}^n$, except that the functions are not linearly independent.</p>
-<p>Elements of this set of function as in the equation above are usually called <em>units</em> or <mark>neurons</mark>.</p>
+<p>Elements of this set of function as in the equation above are usually called <em>units</em> or <strong>neurons</strong>.</p>
 
 </div>
 </div>
@@ -411,7 +411,7 @@ I knew from Cybenko's results that this had to be the case, so I set out and tri
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>These examples help in building up some intuition on how we can use these sigmoidal <em>building blocks</em> to approximate relatively simple non linear behaviours. In this specific case of a convex second-order non-linearity, the sum two scaled, shifted and mirrored step functions seems to yield a decent representation of the data close to the origin.</p>
+<p>These examples help in building up some intuition on how we can use these sigmoidal <em>building blocks</em> to approximate relatively simple non linear behaviours. In this specific case of a convex second-order non-linearity, the sum of two scaled, shifted and mirrored step functions seems to yield a decent representation of the data close to the origin.</p>
 
 </div>
 </div>
@@ -1417,7 +1417,7 @@ MCMC model
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/MLPages/neural%20network/basics/bayesian/mcmc/jupyter/2022/03/20/neurons_non-linearities.html" hidden></a>
+</script><a class="u-url" href="/MLPages/neural%20network/basics/bayesian/mcmc/jupyter/2022/03/21/neurons_non-linearities.html" hidden></a>
 
   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 </article>
