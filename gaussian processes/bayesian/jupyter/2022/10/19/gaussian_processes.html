@@ -4,22 +4,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Gaussian Processes: | An Astronomer’s perspective on Deep Learning</title>
+<title>Gaussian Processes: modelling correlated noise in a dataset | An Astronomer’s perspective on Deep Learning</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Gaussian Processes:" />
+<meta property="og:title" content="Gaussian Processes: modelling correlated noise in a dataset" />
 <meta name="author" content="Lorenzo Posti" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="description" />
-<meta property="og:description" content="description" />
-<link rel="canonical" href="https://lposti.github.io/MLPages/gaussian%20processes/bayesian/jupyter/2022/10/18/gaussian_processes.html" />
-<meta property="og:url" content="https://lposti.github.io/MLPages/gaussian%20processes/bayesian/jupyter/2022/10/18/gaussian_processes.html" />
+<meta name="description" content="Independent datapoints are most often just a convenient idealisation which can even hamper your model inference at times and bias your results. Learn how to embrace the reality of correlated noise in the data and marginalize the parameter posteriors with Gaussian Processes." />
+<meta property="og:description" content="Independent datapoints are most often just a convenient idealisation which can even hamper your model inference at times and bias your results. Learn how to embrace the reality of correlated noise in the data and marginalize the parameter posteriors with Gaussian Processes." />
+<link rel="canonical" href="https://lposti.github.io/MLPages/gaussian%20processes/bayesian/jupyter/2022/10/19/gaussian_processes.html" />
+<meta property="og:url" content="https://lposti.github.io/MLPages/gaussian%20processes/bayesian/jupyter/2022/10/19/gaussian_processes.html" />
 <meta property="og:site_name" content="An Astronomer’s perspective on Deep Learning" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-10-18T00:00:00-05:00" />
+<meta property="article:published_time" content="2022-10-19T00:00:00-05:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Gaussian Processes:" />
+<meta property="twitter:title" content="Gaussian Processes: modelling correlated noise in a dataset" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Lorenzo Posti"},"dateModified":"2022-10-18T00:00:00-05:00","datePublished":"2022-10-18T00:00:00-05:00","description":"description","headline":"Gaussian Processes:","mainEntityOfPage":{"@type":"WebPage","@id":"https://lposti.github.io/MLPages/gaussian%20processes/bayesian/jupyter/2022/10/18/gaussian_processes.html"},"url":"https://lposti.github.io/MLPages/gaussian%20processes/bayesian/jupyter/2022/10/18/gaussian_processes.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Lorenzo Posti"},"dateModified":"2022-10-19T00:00:00-05:00","datePublished":"2022-10-19T00:00:00-05:00","description":"Independent datapoints are most often just a convenient idealisation which can even hamper your model inference at times and bias your results. Learn how to embrace the reality of correlated noise in the data and marginalize the parameter posteriors with Gaussian Processes.","headline":"Gaussian Processes: modelling correlated noise in a dataset","mainEntityOfPage":{"@type":"WebPage","@id":"https://lposti.github.io/MLPages/gaussian%20processes/bayesian/jupyter/2022/10/19/gaussian_processes.html"},"url":"https://lposti.github.io/MLPages/gaussian%20processes/bayesian/jupyter/2022/10/19/gaussian_processes.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/MLPages/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://lposti.github.io/MLPages/feed.xml" title="An Astronomer's perspective on Deep Learning" /><link rel="shortcut icon" type="image/x-icon" href="/MLPages/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -90,15 +90,15 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Gaussian Processes:</h1><p class="page-description">description</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-10-18T00:00:00-05:00" itemprop="datePublished">
-        Oct 18, 2022
+    <h1 class="post-title p-name" itemprop="name headline">Gaussian Processes: modelling correlated noise in a dataset</h1><p class="page-description">Independent datapoints are most often just a convenient idealisation which can even hamper your model inference at times and bias your results. Learn how to embrace the reality of correlated noise in the data and marginalize the parameter posteriors with Gaussian Processes.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-10-19T00:00:00-05:00" itemprop="datePublished">
+        Oct 19, 2022
       </time>• 
           <span itemprop="author" itemscope itemtype="http://schema.org/Person">
             <span class="p-author h-card" itemprop="name">Lorenzo Posti</span></span>
        • <span class="read-time" title="Estimated read time">
     
     
-      12 min read
+      16 min read
     
 </span></p>
 
@@ -149,11 +149,27 @@ window.onload = wrap_img;
 
   <div class="post-content e-content" itemprop="articleBody">
     <ul id="toc" class="section-nav">
-<li class="toc-entry toc-h2"><a href="#How-I-got-interested-in-Gaussian-Processes">How I got interested in Gaussian Processes </a>
+<li class="toc-entry toc-h2"><a href="#How-I-got-interested-in-Gaussian-Processes">How I got interested in Gaussian Processes </a></li>
+<li class="toc-entry toc-h2"><a href="#Gaussian-Processes-(GPs)-in-rotation-curve-modelling">Gaussian Processes (GPs) in rotation curve modelling </a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#Generating-rotation-curve-data-with-independent-Gaussian-noise">Generating rotation curve data with independent Gaussian noise </a></li>
-<li class="toc-entry toc-h3"><a href="#Generating-rotation-curve-data-with-correlated-noise-using-GPs">Generating rotation curve data with correlated noise using GPs </a></li>
-<li class="toc-entry toc-h3"><a href="#Fitting-the-rotation-curve-with-or-without-Gaussian-Processes">Fitting the rotation curve with or without Gaussian Processes </a></li>
+<li class="toc-entry toc-h3"><a href="#Definitions-and-rotation-curve-sampling">Definitions and rotation curve sampling </a></li>
+<li class="toc-entry toc-h3"><a href="#Generating-rotation-curve-data-with-correlated-noise-using-GPs">Generating rotation curve data with correlated noise using GPs </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Build-the-GP-with-tinygp">Build the GP with tinygp </a></li>
+<li class="toc-entry toc-h4"><a href="#The-covariance-matrix">The covariance matrix </a></li>
+<li class="toc-entry toc-h4"><a href="#Sampling-the-rotation-curve-with-correlated-noise">Sampling the rotation curve with correlated noise </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#Fitting-the-rotation-curve-with-or-without-Gaussian-Processes">Fitting the rotation curve with or without Gaussian Processes </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Model-without-GP">Model without GP </a></li>
+<li class="toc-entry toc-h4"><a href="#Sampling-the-posterior-with-numpyro">Sampling the posterior with numpyro </a></li>
+<li class="toc-entry toc-h4"><a href="#Explore-the-MCMC-samples-with-arviz">Explore the MCMC samples with arviz </a></li>
+<li class="toc-entry toc-h4"><a href="#Model-with-GP">Model with GP </a></li>
+<li class="toc-entry toc-h4"><a href="#Comparing-the-2-models-with-a-corner-plot">Comparing the 2 models with a corner plot </a></li>
+<li class="toc-entry toc-h4"><a href="#Predicted-rotation-curves-of-the-2-models">Predicted rotation curves of the 2 models </a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul><!--
@@ -177,8 +193,29 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A few weeks ago I saw passing on the arXiv a paper by <a href="https://arxiv.org/abs/2209.08940">Aigrain &amp; Foreman-Mackey</a> which is a review on Gaussian Processes (GPs) with an astrophysical angle - it is actually targeted for astronomical time-series. I had heard a lot of things about GPs before, but I never really had the time nor will to sit down an actually understand what they are about. That changed when I glanced over the review by Aigrain &amp; Foreman-Mackey, as I quickly realised a couple of things that caught my interest.</p>
-<p>In particular, the thing that struck me the most is their Figure 3. This appears at the end of the first Section of the review, of which about half is dedicated to the explanation of two motivating examples from astronomical time-series analysis - a very smart decision to start the review with these two examples I must say.</p>
+<p>A few weeks ago I saw a paper passing on the arXiv by <a href="https://arxiv.org/abs/2209.08940">Aigrain &amp; Foreman-Mackey</a> which is a review on Gaussian Processes (GPs) from an astrophysical perspective - it is actually targeted for astronomical time-series. I had heard a lot of things about GPs before, but I never really had the time nor will to sit down an actually understand what they are about. That changed when I glanced over the review by Aigrain &amp; Foreman-Mackey, as I quickly realised a couple of things that caught my interest.</p>
+<p>In particular, the thing that struck me the most is their Figure 3. This appears at the end of the first Section of the review, which is mostly dedicated to two <em>motivating examples</em> from astronomical time-series analysis (a very well-crafted first Section I must say!).
+This shows the fit of a mock exoplanet transit lightcurve by two models: the both share the same physics, which is also used to generate the mock dataset, but one takes into account the correlated noise in the data, while the other doesn't and therefore works under the assumption that the datapoints are all uncorrelated and independent.</p>
+<p>GPs are used to realistically represent the correlation in the time-series data typically observed for exoplanet transits and are an ingredient used to generate the mock dataset. So the final outcome of this controlled experiment is that <em>only the model that accounts for correlated data, modelled with a GP, is able to recover reasonably well the true physical parameters, while the other</em> <strong>model without a GP infers a severely biased result</strong>.</p>
+<p>It is interesting to notice that in this example the GP introduces another layer of uncertainty in the model (i.e. how are the data correlated) over which we have to marginalise in order to arrive at the final prediction for the physical parameters. This means that <em>the simple model that treats the data as independent is very confidently inferring a biased result (with relatively high accuracy), as opposed to the model with a GP which is instead less accurate, but unbiased.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Gaussian-Processes-(GPs)-in-rotation-curve-modelling">
+<a class="anchor" href="#Gaussian-Processes-(GPs)-in-rotation-curve-modelling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Gaussian Processes (GPs) in rotation curve modelling<a class="anchor-link" href="#Gaussian-Processes-(GPs)-in-rotation-curve-modelling"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this notebook I'm going to explore how we can use GPs in modelling rotation curves of galaxies. Often - pretty much always - circular velocity measurements in galaxies are treated as independent and parametrized rotation curve models are fitted to such datasets without worrying too much if that is a reasonable assumption. Given that most HI rotation curves are derived with a <a href="https://ui.adsabs.harvard.edu/abs/1974ApJ...193..309R/abstract">tilted-ring model</a>, I am unconfortable with assuming that each datapoint in a rotation curve is actually independent from all the others, since adjacent rings can easily enter the line-of-sight of a given radius.</p>
+<p>For this reason I am going to generate a mock rotation curve dataset where the points are actually correlated. This will be done using a GP. Then I will be fitting this dataset with two models: one assuming that the data are independent, and another taking into account the correlated noise.</p>
 
 </div>
 </div>
@@ -228,6 +265,9 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Definitions-and-rotation-curve-sampling">
+<a class="anchor" href="#Definitions-and-rotation-curve-sampling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Definitions and rotation curve sampling<a class="anchor-link" href="#Definitions-and-rotation-curve-sampling"> </a>
+</h3>
 <p>Define the mathematical functions for the galaxy rotation curves</p>
 
 </div>
@@ -242,13 +282,14 @@ window.onload = wrap_img;
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">G</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">Dc</span> <span class="o">=</span> <span class="mf">4.301e-9</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mf">200.</span>
 
+<span class="c1"># accessory functions</span>
 <span class="k">def</span> <span class="nf">jax_fc</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">jax_Vvir</span><span class="p">(</span><span class="n">Mh</span><span class="p">):</span> <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">Dc</span><span class="o">*</span><span class="p">(</span><span class="n">H</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">G</span><span class="o">*</span><span class="n">Mh</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">2.</span><span class="o">/</span><span class="mf">3.</span><span class="p">))</span>
-
 <span class="k">def</span> <span class="nf">jax_Rvir</span><span class="p">(</span><span class="n">Mh</span><span class="p">):</span>
     <span class="n">rho_hat</span> <span class="o">=</span> <span class="mf">4.</span> <span class="o">/</span> <span class="mf">3.</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">Dc</span> <span class="o">*</span> <span class="p">(</span><span class="mf">3.</span> <span class="o">*</span> <span class="p">(</span><span class="n">H</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mf">8.</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">G</span><span class="p">))</span>
     <span class="k">return</span> <span class="mf">1e3</span> <span class="o">*</span> <span class="p">((</span><span class="n">Mh</span> <span class="o">/</span> <span class="n">rho_hat</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mf">3.</span><span class="p">))</span>
 
+<span class="c1"># actual rotation curve</span>
 <span class="k">def</span> <span class="nf">jax_vhalo</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
     <span class="n">Mh</span><span class="p">,</span> <span class="n">cc</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="n">params</span><span class="p">[</span><span class="s1">'log_mh'</span><span class="p">],</span> <span class="mi">10</span><span class="o">**</span><span class="n">params</span><span class="p">[</span><span class="s1">'log_c'</span><span class="p">]</span>    
     <span class="n">rv</span> <span class="o">=</span> <span class="n">jax_Rvir</span><span class="p">(</span><span class="n">Mh</span><span class="p">)</span>
@@ -265,16 +306,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Generating-rotation-curve-data-with-independent-Gaussian-noise">
-<a class="anchor" href="#Generating-rotation-curve-data-with-independent-Gaussian-noise" aria-hidden="true"><span class="octicon octicon-link"></span></a>Generating rotation curve data with independent Gaussian noise<a class="anchor-link" href="#Generating-rotation-curve-data-with-independent-Gaussian-noise"> </a>
-</h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Plot a randomly sampled rotation curve with a typical error on each datapoint of 8 km/s</p>
+<p>Lat's now plot a randomly sampled rotation curve with a typical error on each datapoint of 8 km/s. As a first step, we will assume that each datapoint is independent and thus we will sample from a Gaussian noise distribution for each measurement.</p>
 
 </div>
 </div>
@@ -354,6 +386,16 @@ This is where GPs come into play.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's now use GPs to generate a new set of datapoints, but this time they will be correlated to one another. To specify this correlation we need to define a <code>kernel</code> or a covariance function which, in the simplest case that we are using here, is a function only of the physical distance of each point (absolute or L1 distance).</p>
 <p>Kernels that depend only of the distance of points are called <em>stationary</em>. A very common kernel function used in GPs is the so-called <em>radial basis function (RBF)</em> or exponential-squared, since $k(x_i, x_j) \propto \exp\left(d_{ij}^2/2s\right)$, where $d_{ij}=|x_i-x_j|$ is the distance of the two datapoints, while $s\in\mathbb{R}$ is a scale parameter.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Build-the-GP-with-tinygp">
+<a class="anchor" href="#Build-the-GP-with-tinygp" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build the GP with tinygp<a class="anchor-link" href="#Build-the-GP-with-tinygp"> </a>
+</h4>
 <p>We define the GP as follows using the library <a href="https://tinygp.readthedocs.io/en/stable/index.html">tinygp</a>.</p>
 
 </div>
@@ -434,6 +476,9 @@ This is where GPs come into play.</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="The-covariance-matrix">
+<a class="anchor" href="#The-covariance-matrix" aria-hidden="true"><span class="octicon octicon-link"></span></a>The covariance matrix<a class="anchor-link" href="#The-covariance-matrix"> </a>
+</h4>
 <p>Just to help out with visualising the GP, let's plot the covariance matrix for this problem.</p>
 
 </div>
@@ -514,6 +559,9 @@ This is where GPs come into play.</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Sampling-the-rotation-curve-with-correlated-noise">
+<a class="anchor" href="#Sampling-the-rotation-curve-with-correlated-noise" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sampling the rotation curve with correlated noise<a class="anchor-link" href="#Sampling-the-rotation-curve-with-correlated-noise"> </a>
+</h4>
 <p>Finally, let's plot the sampled rotation curve and its residuals and let's compare them with the uncorrelated case above.</p>
 
 </div>
@@ -593,6 +641,15 @@ We impose an uniformative uniform prior on the two parameters of the kernel.</p>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Model-without-GP">
+<a class="anchor" href="#Model-without-GP" aria-hidden="true"><span class="octicon octicon-link"></span></a>Model without GP<a class="anchor-link" href="#Model-without-GP"> </a>
+</h4>
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -650,6 +707,9 @@ We impose an uniformative uniform prior on the two parameters of the kernel.</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Sampling-the-posterior-with-numpyro">
+<a class="anchor" href="#Sampling-the-posterior-with-numpyro" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sampling the posterior with numpyro<a class="anchor-link" href="#Sampling-the-posterior-with-numpyro"> </a>
+</h4>
 <p>The <code>model</code> function above has the <code>numpyro</code> primitives like <code>numpyro.sample</code> that are used by the NUTS MCMC sampler to construct the posterior. Below we run the model the first time selecting the <code>use_gp=False</code> branch, i.e. assuming that the data are independent.</p>
 <p>We launch 2 chains for 3000 steps (of which 1/3 of warmup) of the NUTS sampler, starting from a specific value of the parameters that is not too far from the truth (to convieniently speed up convergence). We then use the <code>arviz</code> package to evaluate some statistics on the posterior samples.</p>
 
@@ -780,6 +840,9 @@ Wall time: 23.4 s
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Explore-the-MCMC-samples-with-arviz">
+<a class="anchor" href="#Explore-the-MCMC-samples-with-arviz" aria-hidden="true"><span class="octicon octicon-link"></span></a>Explore the MCMC samples with arviz<a class="anchor-link" href="#Explore-the-MCMC-samples-with-arviz"> </a>
+</h4>
 <p>The posterior has been successfully sampled and we can now have a look at the marginalized distributions of the two physical parameters, mass and concentration.</p>
 
 </div>
@@ -821,6 +884,9 @@ Wall time: 23.4 s
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Model-with-GP">
+<a class="anchor" href="#Model-with-GP" aria-hidden="true"><span class="octicon octicon-link"></span></a>Model with GP<a class="anchor-link" href="#Model-with-GP"> </a>
+</h4>
 <p>Let's now repeat the fitting procedure, but this time for the <code>use_gp=True</code> branch of <code>model</code>, i.e. allowing for the data to be correlated.</p>
 
 </div>
@@ -1077,7 +1143,10 @@ Wall time: 44.9 s
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's have a look at the corner plot of the marginalised posterio distribution in the mass-concentration space.</p>
+<h4 id="Comparing-the-2-models-with-a-corner-plot">
+<a class="anchor" href="#Comparing-the-2-models-with-a-corner-plot" aria-hidden="true"><span class="octicon octicon-link"></span></a>Comparing the 2 models with a corner plot<a class="anchor-link" href="#Comparing-the-2-models-with-a-corner-plot"> </a>
+</h4>
+<p>Let's have a look at the <a href="https://corner.readthedocs.io/en/latest/">corner</a> plot of the marginalised posterior distribution in the mass-concentration space.</p>
 
 </div>
 </div>
@@ -1141,6 +1210,9 @@ Wall time: 44.9 s
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Predicted-rotation-curves-of-the-2-models">
+<a class="anchor" href="#Predicted-rotation-curves-of-the-2-models" aria-hidden="true"><span class="octicon octicon-link"></span></a>Predicted rotation curves of the 2 models<a class="anchor-link" href="#Predicted-rotation-curves-of-the-2-models"> </a>
+</h4>
 <p>Finally, let's plot the predicted rotation curves of the two models in comparison with the data.</p>
 
 </div>
@@ -1229,6 +1301,16 @@ Wall time: 44.9 s
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the left-hand panels we compare 20 random samples of the predicted rotation curve for the first iteration of the model, i.e. the one treating each datapoint as independent. We see that the model rotation curves (in black) tend to overshoot the mean at small radii and tend to fall below it at large radii - this becomes particularly clear in the residuals plot. The reason for this discrepancy is that this model finds a biased result, predicting a higher concentration and a lower mass than the true values.</p>
+<p>The middle panels similarly compare samples of the predictions of the second model, i.e. the one that uses GPs to model correlations among successive datapoints. We see that while the prediction of the rotation curve (in blue) becomes much less accurate, it is now unbiased. In fact, the true mean rotation curve that we used to generate the dataset is very well encompassed by the random samples of this model.</p>
+<p>The right panels demonstrate why such a large variety of rotation curve shapes in the blue model is consistent with the dataset. In fact, each blue curve is itself a GP and when <a href="https://en.wikipedia.org/wiki/Conditioning_(probability">conditioning</a>) it to the measurements we obtain the green curves in the right panels, which are all consistent with the data (reduced $\chi^2$ less than unity).</p>
+
+</div>
+</div>
+</div>
 </div>
 
 
@@ -1241,7 +1323,7 @@ Wall time: 44.9 s
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/MLPages/gaussian%20processes/bayesian/jupyter/2022/10/18/gaussian_processes.html" hidden></a>
+</script><a class="u-url" href="/MLPages/gaussian%20processes/bayesian/jupyter/2022/10/19/gaussian_processes.html" hidden></a>
 
   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 </article>
