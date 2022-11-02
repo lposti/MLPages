@@ -143,22 +143,22 @@ window.onload = wrap_img;
 
   <div class="post-content e-content" itemprop="articleBody">
     <ul id="toc" class="section-nav">
-<li class="toc-entry toc-h1"><a href="#Attribution-&-License">Attribution &amp; License </a></li>
-<li class="toc-entry toc-h1"><a href="#Introduction">Introduction </a></li>
-<li class="toc-entry toc-h1"><a href="#Data">Data </a>
+<li class="toc-entry toc-h2"><a href="#Attribution-&-License">Attribution &amp; License </a></li>
+<li class="toc-entry toc-h2"><a href="#Introduction">Introduction </a></li>
+<li class="toc-entry toc-h2"><a href="#Data">Data </a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#Definitions-of-functions-for-curve-decomposition">Definitions of functions for curve decomposition </a></li>
-<li class="toc-entry toc-h2"><a href="#Rotation-curve-data-for-NGC-2403">Rotation curve data for NGC 2403 </a></li>
+<li class="toc-entry toc-h3"><a href="#Definitions-of-functions-for-curve-decomposition">Definitions of functions for curve decomposition </a></li>
+<li class="toc-entry toc-h3"><a href="#Rotation-curve-data-for-NGC-2403">Rotation curve data for NGC 2403 </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h1"><a href="#Models-with-or-without-GPs">Models with or without GPs </a>
+<li class="toc-entry toc-h2"><a href="#Models-with-or-without-GPs">Models with or without GPs </a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#Gaussian-Processes">Gaussian Processes </a></li>
-<li class="toc-entry toc-h2"><a href="#numpyro-models">numpyro models </a></li>
-<li class="toc-entry toc-h2"><a href="#Running-the-model-without-GP,-i.e.-assuming-independent-datapoints">Running the model without GP, i.e. assuming independent datapoints </a></li>
-<li class="toc-entry toc-h2"><a href="#Running-the-model-with-GP,-i.e.-taking-into-account-data-correlations">Running the model with GP, i.e. taking into account data correlations </a></li>
-<li class="toc-entry toc-h2"><a href="#Comparing-the-predictions-of-the-two-models">Comparing the predictions of the two models </a></li>
-<li class="toc-entry toc-h2"><a href="#Correlation-matrix">Correlation matrix </a></li>
+<li class="toc-entry toc-h3"><a href="#Gaussian-Processes">Gaussian Processes </a></li>
+<li class="toc-entry toc-h3"><a href="#numpyro-models">numpyro models </a></li>
+<li class="toc-entry toc-h3"><a href="#Running-the-model-without-GP,-i.e.-assuming-independent-datapoints">Running the model without GP, i.e. assuming independent datapoints </a></li>
+<li class="toc-entry toc-h3"><a href="#Running-the-model-with-GP,-i.e.-taking-into-account-data-correlations">Running the model with GP, i.e. taking into account data correlations </a></li>
+<li class="toc-entry toc-h3"><a href="#Comparing-the-predictions-of-the-two-models">Comparing the predictions of the two models </a></li>
+<li class="toc-entry toc-h3"><a href="#Correlation-matrix">Correlation matrix </a></li>
 </ul>
 </li>
 </ul><!--
@@ -173,9 +173,9 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Attribution-&amp;-License">
+<h2 id="Attribution-&amp;-License">
 <a class="anchor" href="#Attribution-&amp;-License" aria-hidden="true"><span class="octicon octicon-link"></span></a>Attribution &amp; License<a class="anchor-link" href="#Attribution-&amp;-License"> </a>
-</h1>
+</h2>
 </div>
 </div>
 </div>
@@ -199,9 +199,9 @@ The code is distributed under BSD-style license and it can be used and copied.</
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Introduction">
+<h2 id="Introduction">
 <a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
-</h1>
+</h2>
 </div>
 </div>
 </div>
@@ -261,9 +261,9 @@ The code is distributed under BSD-style license and it can be used and copied.</
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Data">
+<h2 id="Data">
 <a class="anchor" href="#Data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data<a class="anchor-link" href="#Data"> </a>
-</h1>
+</h2>
 </div>
 </div>
 </div>
@@ -279,9 +279,9 @@ The code is distributed under BSD-style license and it can be used and copied.</
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Definitions-of-functions-for-curve-decomposition">
+<h3 id="Definitions-of-functions-for-curve-decomposition">
 <a class="anchor" href="#Definitions-of-functions-for-curve-decomposition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Definitions of functions for curve decomposition<a class="anchor-link" href="#Definitions-of-functions-for-curve-decomposition"> </a>
-</h2>
+</h3>
 </div>
 </div>
 </div>
@@ -386,9 +386,9 @@ I assume <a href="https://ui.adsabs.harvard.edu/abs/1996ApJ...462..563N/abstract
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Rotation-curve-data-for-NGC-2403">
+<h3 id="Rotation-curve-data-for-NGC-2403">
 <a class="anchor" href="#Rotation-curve-data-for-NGC-2403" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rotation curve data for NGC 2403<a class="anchor-link" href="#Rotation-curve-data-for-NGC-2403"> </a>
-</h2>
+</h3>
 </div>
 </div>
 </div>
@@ -484,9 +484,9 @@ I assume <a href="https://ui.adsabs.harvard.edu/abs/1996ApJ...462..563N/abstract
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Models-with-or-without-GPs">
+<h2 id="Models-with-or-without-GPs">
 <a class="anchor" href="#Models-with-or-without-GPs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Models with or without GPs<a class="anchor-link" href="#Models-with-or-without-GPs"> </a>
-</h1>
+</h2>
 </div>
 </div>
 </div>
@@ -502,9 +502,9 @@ I assume <a href="https://ui.adsabs.harvard.edu/abs/1996ApJ...462..563N/abstract
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Gaussian-Processes">
+<h3 id="Gaussian-Processes">
 <a class="anchor" href="#Gaussian-Processes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Gaussian Processes<a class="anchor-link" href="#Gaussian-Processes"> </a>
-</h2>
+</h3>
 </div>
 </div>
 </div>
@@ -546,9 +546,9 @@ This kernel is said to be <em>stationary</em> because it depends only on the dis
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="numpyro-models">
+<h3 id="numpyro-models">
 <a class="anchor" href="#numpyro-models" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>numpyro</code> models<a class="anchor-link" href="#numpyro-models"> </a>
-</h2>
+</h3>
 </div>
 </div>
 </div>
@@ -640,9 +640,9 @@ This kernel is said to be <em>stationary</em> because it depends only on the dis
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Running-the-model-without-GP,-i.e.-assuming-independent-datapoints">
+<h3 id="Running-the-model-without-GP,-i.e.-assuming-independent-datapoints">
 <a class="anchor" href="#Running-the-model-without-GP,-i.e.-assuming-independent-datapoints" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running the model without GP, i.e. assuming independent datapoints<a class="anchor-link" href="#Running-the-model-without-GP,-i.e.-assuming-independent-datapoints"> </a>
-</h2>
+</h3>
 </div>
 </div>
 </div>
@@ -866,9 +866,9 @@ Wall time: 45.7 s
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Running-the-model-with-GP,-i.e.-taking-into-account-data-correlations">
+<h3 id="Running-the-model-with-GP,-i.e.-taking-into-account-data-correlations">
 <a class="anchor" href="#Running-the-model-with-GP,-i.e.-taking-into-account-data-correlations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running the model with GP, i.e. taking into account data correlations<a class="anchor-link" href="#Running-the-model-with-GP,-i.e.-taking-into-account-data-correlations"> </a>
-</h2>
+</h3>
 </div>
 </div>
 </div>
@@ -1090,9 +1090,9 @@ Wall time: 1min 38s
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Comparing-the-predictions-of-the-two-models">
+<h3 id="Comparing-the-predictions-of-the-two-models">
 <a class="anchor" href="#Comparing-the-predictions-of-the-two-models" aria-hidden="true"><span class="octicon octicon-link"></span></a>Comparing the predictions of the two models<a class="anchor-link" href="#Comparing-the-predictions-of-the-two-models"> </a>
-</h2>
+</h3>
 </div>
 </div>
 </div>
@@ -1240,9 +1240,9 @@ Here I get the predictions of the model, excluding the warmup phase during sampl
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Correlation-matrix">
+<h3 id="Correlation-matrix">
 <a class="anchor" href="#Correlation-matrix" aria-hidden="true"><span class="octicon octicon-link"></span></a>Correlation matrix<a class="anchor-link" href="#Correlation-matrix"> </a>
-</h2>
+</h3>
 </div>
 </div>
 </div>
