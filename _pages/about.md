@@ -6,8 +6,7 @@ permalink: /about/
 
 <p><img src="../images/LP_round.png" style="height:120px;width:120px;float:left;"/>
 I am Lorenzo Posti, currently a postdoctoral researcher in Astrophysics at the Observatory of Strasbourg (France). Before that, I've been working on research in Astrophysics in
-Groningen (Netherlands) and Bologna (Italy), as well as in Oxford (UK) and Baltimore (USA)
-for short periods.
+Groningen (Netherlands), Bologna (Italy), Oxford (UK) and Baltimore (USA).
 </p>
 
 You can find my updated *list of publications* on [ADS](https://ui.adsabs.harvard.edu/user/libraries/fCiUp3W_T7qXYNboezCKAg). I used to maintain a personal website with some details
