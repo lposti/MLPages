@@ -9,8 +9,8 @@
 <meta property="og:title" content="Rotation curve decompositions with Gaussian Processes: taking into account data correlations leads to unbiased results" />
 <meta name="author" content="Lorenzo Posti" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Correlations between velocity measurements in disk galaxy rotation curves are usually neglected when fitting dynamical models. This notebook, which accompanies the paper link_to_paper, shows how data correlations can be taken into account in rotation curve decompositions using Gaussian Processes." />
-<meta property="og:description" content="Correlations between velocity measurements in disk galaxy rotation curves are usually neglected when fitting dynamical models. This notebook, which accompanies the paper link_to_paper, shows how data correlations can be taken into account in rotation curve decompositions using Gaussian Processes." />
+<meta name="description" content="Correlations between velocity measurements in disk galaxy rotation curves are usually neglected when fitting dynamical models. This notebook, which accompanies the paper Posti (2022), Res. Notes AAS, 6, 233, shows how data correlations can be taken into account in rotation curve decompositions using Gaussian Processes." />
+<meta property="og:description" content="Correlations between velocity measurements in disk galaxy rotation curves are usually neglected when fitting dynamical models. This notebook, which accompanies the paper Posti (2022), Res. Notes AAS, 6, 233, shows how data correlations can be taken into account in rotation curve decompositions using Gaussian Processes." />
 <link rel="canonical" href="https://lposti.github.io/MLPages/gaussian_processes/2022/11/02/gp_rotcurves.html" />
 <meta property="og:url" content="https://lposti.github.io/MLPages/gaussian_processes/2022/11/02/gp_rotcurves.html" />
 <meta property="og:site_name" content="An Astronomer’s perspective on Deep Learning" />
@@ -19,7 +19,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Rotation curve decompositions with Gaussian Processes: taking into account data correlations leads to unbiased results" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Lorenzo Posti"},"dateModified":"2022-11-02T00:00:00-05:00","datePublished":"2022-11-02T00:00:00-05:00","description":"Correlations between velocity measurements in disk galaxy rotation curves are usually neglected when fitting dynamical models. This notebook, which accompanies the paper link_to_paper, shows how data correlations can be taken into account in rotation curve decompositions using Gaussian Processes.","headline":"Rotation curve decompositions with Gaussian Processes: taking into account data correlations leads to unbiased results","mainEntityOfPage":{"@type":"WebPage","@id":"https://lposti.github.io/MLPages/gaussian_processes/2022/11/02/gp_rotcurves.html"},"url":"https://lposti.github.io/MLPages/gaussian_processes/2022/11/02/gp_rotcurves.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Lorenzo Posti"},"dateModified":"2022-11-02T00:00:00-05:00","datePublished":"2022-11-02T00:00:00-05:00","description":"Correlations between velocity measurements in disk galaxy rotation curves are usually neglected when fitting dynamical models. This notebook, which accompanies the paper Posti (2022), Res. Notes AAS, 6, 233, shows how data correlations can be taken into account in rotation curve decompositions using Gaussian Processes.","headline":"Rotation curve decompositions with Gaussian Processes: taking into account data correlations leads to unbiased results","mainEntityOfPage":{"@type":"WebPage","@id":"https://lposti.github.io/MLPages/gaussian_processes/2022/11/02/gp_rotcurves.html"},"url":"https://lposti.github.io/MLPages/gaussian_processes/2022/11/02/gp_rotcurves.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/MLPages/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://lposti.github.io/MLPages/feed.xml" title="An Astronomer's perspective on Deep Learning" /><link rel="shortcut icon" type="image/x-icon" href="/MLPages/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -90,7 +90,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Rotation curve decompositions with Gaussian Processes: taking into account data correlations leads to unbiased results</h1><p class="page-description">Correlations between velocity measurements in disk galaxy rotation curves are usually neglected when fitting dynamical models. This notebook, which accompanies the paper **link_to_paper**, shows how data correlations can be taken into account in rotation curve decompositions using Gaussian Processes.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-11-02T00:00:00-05:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Rotation curve decompositions with Gaussian Processes: taking into account data correlations leads to unbiased results</h1><p class="page-description">Correlations between velocity measurements in disk galaxy rotation curves are usually neglected when fitting dynamical models. This notebook, which accompanies the paper <a href='https://iopscience.iop.org/article/10.3847/2515-5172/aca0df'>Posti (2022), Res. Notes AAS, 6, 233</a>, shows how data correlations can be taken into account in rotation curve decompositions using Gaussian Processes.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-11-02T00:00:00-05:00" itemprop="datePublished">
         Nov 2, 2022
       </time>• 
           <span itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -182,7 +182,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If you use parts of the code found in this notebook please cite the paper <strong>link_to_paper</strong></p>
+<p>If you use parts of the code found in this notebook please cite the paper <a href="https://iopscience.iop.org/article/10.3847/2515-5172/aca0df">Posti (2022), Res. Notes AAS, 6, 233</a>.</p>
 
 </div>
 </div>
@@ -209,7 +209,7 @@ The code is distributed under BSD-style license and it can be copied and used.</
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Galaxy rotation curves are usually modelled by assuming that each datapoint in the curve is independent from the others. However, this is naturally just a first order approximation, since observational effects such due to geometrical projection and resolution, as well as physical effects such as non-circular motions, can make the velocities measured in two adjacent annnuli significantly correlated.</p>
-<p>In this notebook I use the rotation curve of NGC 2403 as a test case to show how to include Gaussian Processes (GPs) in rotation curve decomposition models, in order to account for underlying data correlations. More details can be found in the accompanying paper <strong>link_to_paper</strong>.</p>
+<p>In this notebook I use the rotation curve of NGC 2403 as a test case to show how to include Gaussian Processes (GPs) in rotation curve decomposition models, in order to account for underlying data correlations. More details can be found in the accompanying paper <a href="https://iopscience.iop.org/article/10.3847/2515-5172/aca0df">Posti (2022), Res. Notes AAS, 6, 233</a>.</p>
 
 </div>
 </div>
