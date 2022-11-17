@@ -40,7 +40,8 @@ baseurl: "/MLPages" # the subpath of your site, e.g. "/blog".
 minima:
   social_links:
     # twitter: fastdotai
-    github: lposti
+    # github: lposti
+    - { platform: github,  user_url: "https://github.com/lposti" }
 
 # Set this to true to get LaTeX math equation support
 use_math: true
