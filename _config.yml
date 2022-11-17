@@ -36,6 +36,11 @@ url: "https://lposti.github.io" # the base hostname & protocol for your site, e.
 #
 baseurl: "/MLPages" # the subpath of your site, e.g. "/blog".
 
+# Adding author field
+author:
+  name: Lorenzo Posti
+  email: "lorenzo.posti@gmail.com"
+
 # Github and twitter are optional:
 minima:
   social_links:
