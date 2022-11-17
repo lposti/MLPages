@@ -84,7 +84,7 @@
   
       ,"page1": {
           "title": "About Me",
-          "content": "I am Lorenzo Posti, currently a postdoctoral researcher in Astrophysics at the Observatory of Strasbourg (France). Before that, I&#39;ve been working on research in Astrophysics in Groningen (Netherlands), Bologna (Italy), Oxford (UK) and Baltimore (USA). . You can find my updated list of publications on ADS. I used to maintain a personal website with some details on my research, however I stopped doing that for various reasons. An archived and stripped-down version can be found here. . This website is powered by fastpages 1. . a blogging platform that natively supports Jupyter notebooks in addition to other formats. &#8617; . |",
+          "content": "I am Lorenzo Posti, currently a postdoctoral researcher at the Astronomical Observatory of Strasbourg (France). Before that, I&#39;ve been doing research in Astrophysics in Groningen (Netherlands), Bologna (Italy), Oxford (UK) and Baltimore (USA). . You can find my updated list of publications on ADS. I used to maintain a personal website with some details on my research, however I stopped doing that for various reasons. An archived and stripped-down version can be found here. . You can reach out to me at lorenzo.posti@gmail.com. . This website is powered by fastpages 1. . a blogging platform that natively supports Jupyter notebooks in addition to other formats. &#8617; . |",
           "url": "https://lposti.github.io/MLPages/about/",
           "relUrl": "/about/",
           "date": ""
