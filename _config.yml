@@ -41,7 +41,9 @@ minima:
   social_links:
     # twitter: fastdotai
     # github: lposti
-    - { platform: github,  user_url: "https://github.com/lposti" }
+    - { platform: github,          user_url: "https://github.com/lposti" }
+    - { platform: ads,             user_url: "https://ui.adsabs.harvard.edu/user/libraries/fCiUp3W_T7qXYNboezCKAg" }
+    - { platform: google_scholar,  user_url: "https://scholar.google.com/citations?user=fDDcGdwAAAAJ&hl=en" }
 
 # Set this to true to get LaTeX math equation support
 use_math: true
